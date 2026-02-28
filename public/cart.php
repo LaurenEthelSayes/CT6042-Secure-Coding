@@ -40,7 +40,7 @@ if (count($cart) > 0) {
 
 <div class="card">
   <h1>Your basket</h1>
-  <p>Session-based cart (simple on purpose).</p>
+ <p>Review your items before checkout.</p>
 </div>
 
 <br>

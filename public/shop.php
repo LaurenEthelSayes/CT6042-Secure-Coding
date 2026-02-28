@@ -16,7 +16,7 @@ $items = $pdo->query("SELECT id, name, description, price FROM shop_items ORDER 
 
 <?php if (count($items) === 0): ?>
   <div class="card">
-    <p>No items yet. (We can seed some in phpMyAdmin.)</p>
+    
   </div>
 <?php else: ?>
   <div class="grid">

@@ -10,6 +10,7 @@ $items = $pdo->query("SELECT id, name, description, price FROM shop_items ORDER 
 <div class="card">
   <h1>Shop</h1>
   <p><strong>Members-only</strong> cat goodies: toys, bowls, treats, scratching posts.</p>
+  <p><a href="shop_search.php">Search the shop</a></p>
 </div>
 
 <br>

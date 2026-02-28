@@ -1,4 +1,8 @@
-<?php require_once "../includes/header.php"; ?>
+<?php
+require_once "../includes/auth.php";
+require_login();
+require_once "../includes/header.php";
+?>
 
 <div class="card">
   <h1>Upcycled</h1>
@@ -12,7 +16,7 @@
     <label>Description</label><br>
     <textarea name="description" rows="4" required></textarea><br><br>
 
-    <label>Price (£)</label><br>
+    <label>Price (ï¿½)</label><br>
     <input type="number" name="price" min="0" step="0.01" required><br><br>
 
     <button type="submit">Post listing</button>

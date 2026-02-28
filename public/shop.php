@@ -25,7 +25,11 @@ $items = $pdo->query("SELECT id, name, description, price FROM shop_items ORDER 
         <h2><?php echo htmlspecialchars($item["name"], ENT_QUOTES, "UTF-8"); ?></h2>
         <p><?php echo htmlspecialchars($item["description"], ENT_QUOTES, "UTF-8"); ?></p>
         <p><strong>£<?php echo number_format((float)$item["price"], 2); ?></strong></p>
-        <button type="button" disabled>Add to basket</button>
+        <form method="post" action="cart_add.php" style="margin-top:10px;">
+  <input type="hidden" name="id" value="<?php echo (int)$item["id"]; ?>">
+  <input type="hidden" name="qty" value="1">
+  <button type="submit">Add to basket</button>
+</form>
       </div>
     <?php endforeach; ?>
   </div>

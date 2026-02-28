@@ -17,13 +17,14 @@ $isLoggedIn = isset($_SESSION["user"]);
     <div class="logo">??</div>
     <div>
       <div class="brand-name">Cats@Home</div>
-      <div class="brand-tag">Find, adopt, shop, and share. Soft paws only.</div>
+      <div class="brand-tag">Find, adopt, shop and share. Soft paws only.</div>
     </div>
   </div>
 
   <nav class="nav">
     <a href="home.php">Home</a>
     <a href="shop.php">Shop</a>
+    <a href="cart.php">Basket</a>
     <a href="upcycled.php">Upcycled</a>
     <a href="forum.php">Forum</a>
     <a href="faq.php">FAQ</a>

@@ -18,7 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
       $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, 'user')");
       $stmt->execute([$username, $email, $hash]);
-      $ok = "Account created. You can now login.";
+      header("Location: login.php?registered=1");
+exit;
     } catch (Exception $e) {
       $error = "Account creation failed (username/email may already exist).";
     }

@@ -1,4 +1,8 @@
-<?php require_once "../includes/header.php"; ?>
+<?php
+require_once "../includes/auth.php";
+require_login();
+require_once "../includes/header.php";
+?>
 
 <div class="card">
   <h1>Shop</h1>

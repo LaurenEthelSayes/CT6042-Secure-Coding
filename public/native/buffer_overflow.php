@@ -5,31 +5,31 @@ require_once "../../includes/native_bridge.php";
 
 $out = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $out = native_module_run($_POST["input"] ?? "");
+  $res = native_overflow_run($_POST["input"] ?? "");
+  $out = $res["out"];
 }
 ?>
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Buffer Overflow (Native)</title>
+  <title>Buffer Overflow <title>
   <link rel="stylesheet" href="/CT6042-Secure-Coding/assets/styles.css">
 </head>
 <body>
   <main class="container">
     <div class="card">
-      <h1>Buffer Overflow (Native)</h1>
-      <p>Dedicated lab area for the native vulnerability component.</p>
+      <h1>Buffer Overflow</h1>
 
       <form method="post">
         <label>Input</label><br>
-        <input type="text" name="input" style="width:100%;" required><br><br>
-        <button type="submit">Send to native component</button>
+        <textarea name="input" rows="6" style="width:100%;" required></textarea><br><br>
+        <button type="submit">Send to EXE</button>
       </form>
 
       <?php if ($out !== ""): ?>
         <hr>
-        <p><strong>Native output:</strong></p>
+        <p><strong>Program output:</strong></p>
         <pre><?php echo htmlspecialchars($out, ENT_QUOTES, "UTF-8"); ?></pre>
       <?php endif; ?>
     </div>

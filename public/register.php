@@ -1,4 +1,5 @@
 ﻿<?php
+require_once "../includes/captcha.php";
 require_once "../includes/header.php";
 require_once "../includes/db.php";
 
@@ -10,7 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $email = trim($_POST["email"] ?? "");
   $password = $_POST["password"] ?? "";
 
-  if ($username === "" || $email === "" || $password === "") {
+  if (!captcha_verify($_POST["captcha"] ?? "")) {
+    $error = "CAPTCHA failed.";
+  } elseif ($username === "" || $email === "" || $password === "") {
     $error = "All fields are required.";
   } else {
     $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -19,12 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, 'user')");
       $stmt->execute([$username, $email, $hash]);
       header("Location: login.php?registered=1");
-exit;
+      exit;
     } catch (Exception $e) {
       $error = "Account creation failed (username/email may already exist).";
     }
   }
 }
+
+$captcha = captcha_generate_question();
 ?>
 
 <div class="card">
@@ -48,6 +53,9 @@ exit;
 
     <label>Password</label><br>
     <input type="password" name="password" required><br><br>
+
+    <label>CAPTCHA: <?php echo htmlspecialchars($captcha["question"], ENT_QUOTES, "UTF-8"); ?></label><br>
+    <input type="text" name="captcha" required><br><br>
 
     <button type="submit">Create account</button>
   </form>

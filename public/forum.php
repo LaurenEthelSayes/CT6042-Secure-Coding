@@ -122,8 +122,7 @@ if (count($posts) > 0) {
           Posted by <strong><?php echo htmlspecialchars($p["username"], ENT_QUOTES, "UTF-8"); ?></strong>
           • <?php echo htmlspecialchars($p["created_at"], ENT_QUOTES, "UTF-8"); ?>
         </p>
-        <p><?php echo nl2br(htmlspecialchars($p["message"], ENT_QUOTES, "UTF-8")); ?></p>
-
+        <?php echo nl2br($p["message"]); ?>
         <hr>
 
         <h3 style="margin-top:0;">Replies (<?php echo count($replies); ?>)</h3>
@@ -137,7 +136,7 @@ if (count($posts) > 0) {
                 <strong><?php echo htmlspecialchars($r["username"], ENT_QUOTES, "UTF-8"); ?></strong>
                 • <?php echo htmlspecialchars($r["created_at"], ENT_QUOTES, "UTF-8"); ?>
               </p>
-              <p style="margin:0;"><?php echo nl2br(htmlspecialchars($r["message"], ENT_QUOTES, "UTF-8")); ?></p>
+<?php echo nl2br($r["message"]); ?>            </div>
             </div>
           <?php endforeach; ?>
         <?php endif; ?>

@@ -1,57 +1,64 @@
 ﻿<?php
 require_once "../../includes/db.php";
-require_once "../../includes/oauth_client.php";
 
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
 $code = $_GET["code"] ?? "";
-$state = $_GET["state"] ?? "";
-
-// For now: just basic plumbing.
-// We'll harden the validations in the "secure iteration".
 if ($code === "") {
   header("Location: ../login.php?err=oauth");
   exit;
 }
 
-// MOCK exchange: call our local token endpoint using file_get_contents (simple lab plumbing)
-$cfg = oauth_config();
-$tokenUrl = build_url($cfg["token_url"], [
-  "code" => $code,
-  "client_id" => $cfg["client_id"],
-  "client_secret" => $cfg["client_secret"]
-]);
 
-$tokenJson = @file_get_contents("http://localhost" . $tokenUrl);
-$token = $tokenJson ? json_decode($tokenJson, true) : null;
+$store = __DIR__ . "/../mock_oauth_provider/codes.json";
+$data = file_exists($store) ? json_decode(file_get_contents($store), true) : [];
+$user = $data[$code] ?? null;
 
-if (!$token || empty($token["email"]) || empty($token["username"])) {
+if (!$user) {
   header("Location: ../login.php?err=oauth");
   exit;
 }
 
-$email = $token["email"];
-$username = $token["username"];
+$profiles = [
+  "molly" => ["username" => "molly", "email" => "molly@catbook.local"],
+  "admin" => ["username" => "admin", "email" => "admin@catbook.local"],
+  "test"  => ["username" => "test",  "email" => "test@catbook.local"]
+];
 
-// Create or find user
+$profile = $profiles[$user] ?? $profiles["molly"];
+$email = $profile["email"];
+$username = $profile["username"];
+
+
 $stmt = $pdo->prepare("SELECT id, username, role FROM users WHERE email = ?");
 $stmt->execute([$email]);
-$user = $stmt->fetch();
+$existing = $stmt->fetch();
 
-if (!$user) {
+if (!$existing) {
   $hash = password_hash(bin2hex(random_bytes(12)), PASSWORD_BCRYPT);
-  $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, 'user')");
-  $stmt->execute([$username, $email, $hash]);
+
+$base = $username;
+$final = $base;
+
+$stmt = $pdo->prepare("SELECT COUNT(*) AS c FROM users WHERE username = ?");
+$stmt->execute([$final]);
+$exists = (int)$stmt->fetch()["c"];
+
+if ($exists > 0) {
+  $final = $base . "_catbook";
+}
+
+$stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, 'user')");
+$stmt->execute([$final, $email, $hash]);
 
   $stmt = $pdo->prepare("SELECT id, username, role FROM users WHERE email = ?");
   $stmt->execute([$email]);
-  $user = $stmt->fetch();
+  $existing = $stmt->fetch();
 }
 
-// Log in
-$_SESSION["user_id"] = (int)$user["id"];
-$_SESSION["user"] = $user["username"];
-$_SESSION["role"] = $user["role"];
+$_SESSION["user_id"] = (int)$existing["id"];
+$_SESSION["user"] = $existing["username"];
+$_SESSION["role"] = $existing["role"];
 
 header("Location: ../shop.php");
 exit;

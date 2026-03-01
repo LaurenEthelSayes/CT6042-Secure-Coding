@@ -32,7 +32,7 @@ function native_overflow_run(string $input): array {
   if ($stderr !== "") {
     $combined .= "\n[stderr]\n" . $stderr;
   }
-  $combined .= "\n[exit code] " . $exitCode;
+  $combined .= "\n[error count] " . $exitCode;
 
   return ["ok" => true, "out" => $combined];
 }

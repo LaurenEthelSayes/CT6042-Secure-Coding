@@ -1,9 +1,8 @@
 ﻿<?php
-// Simple DB connector (we'll harden + move creds later)
 $DB_HOST = "127.0.0.1";
 $DB_NAME = "catsathome";
 $DB_USER = "root";
-$DB_PASS = ""; // default XAMPP
+$DB_PASS = ""; 
 
 try {
   $pdo = new PDO(

@@ -1,9 +1,7 @@
 ﻿<?php
-// Mock OAuth provider (local)
 $redirect = $_GET["redirect_uri"] ?? "";
 $state = $_GET["state"] ?? "";
 
-// Simple mock "consent" UX
 ?>
 <!doctype html>
 <html>
@@ -31,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $user = $_POST["user"] ?? "molly";
   $code = bin2hex(random_bytes(8));
 
-  // Store a mapping code -> user (file-based, local only)
   $store = __DIR__ . "/codes.json";
   $data = file_exists($store) ? json_decode(file_get_contents($store), true) : [];
   $data[$code] = $user;

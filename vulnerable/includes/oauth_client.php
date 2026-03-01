@@ -1,5 +1,4 @@
 ﻿<?php
-// OAuth scaffolding (mock provider for local lab)
 function oauth_config(): array {
   return [
     "client_id" => "catsathome-client",

@@ -1,7 +1,7 @@
 <?php require_once "../includes/header.php"; ?>
 
 <div class="card">
-  <h1>Welcome to Cats@Home ??</h1>
+  <h1>Welcome to Cats@Home  </h1>
   <p>A cosy place for cat fans: shop essentials, trade upcycled items and chat in the forum.</p>
 </div>
 

@@ -8,7 +8,6 @@ $items = $pdo->query("SELECT id, name, price FROM shop_items ORDER BY id")->fetc
 
 <div class="card">
   <h1>DB Test</h1>
-  <p>If you can see users + items below, your backend is wired ✅</p>
 
   <h2>Users</h2>
   <pre><?php print_r($users); ?></pre>

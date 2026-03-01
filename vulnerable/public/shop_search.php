@@ -4,10 +4,7 @@ require_login();
 require_once "../includes/header.php";
 require_once "../includes/db.php";
 
-/*
-  VULNERABLE ON PURPOSE (SQL Injection):
-  - Directly concatenates user input into SQL query
-*/
+
 $q = $_GET["q"] ?? "";
 $sql = "SELECT id, name, description, price FROM shop_items WHERE name LIKE '%$q%' OR description LIKE '%$q%' ORDER BY id DESC";
 $items = $pdo->query($sql)->fetchAll();

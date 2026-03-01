@@ -2,7 +2,6 @@
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
 function captcha_generate_question(): array {
-  // simple human check (we'll make it "weak" later on purpose)
   $a = random_int(1, 9);
   $b = random_int(1, 9);
   $_SESSION["captcha_answer"] = (string)($a + $b);

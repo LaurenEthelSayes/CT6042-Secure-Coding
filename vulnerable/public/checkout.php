@@ -3,6 +3,7 @@ require_once "../includes/auth.php";
 require_login();
 require_once "../includes/header.php";
 require_once "../includes/db.php";
+require_once "../includes/crypto.php";
 
 if (!isset($_SESSION["cart"])) { $_SESSION["cart"] = []; }
 $cart = $_SESSION["cart"];
@@ -22,15 +23,19 @@ if (count($cart) > 0) {
 }
 
 $msg = "";
+$paymentToken = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $basketJson = json_encode($cart);
 
-  $stmt = $pdo->prepare("INSERT INTO orders (user_id, total, basket_json) VALUES (?, ?, ?)");
-  $stmt->execute([(int)$_SESSION["user_id"], (float)$total, $basketJson]);
+  $plain = $_SESSION["user_id"] . "|" . number_format($total, 2) . "|" . time();
+  $paymentToken = crypto_des_encrypt($plain);
+
+  $stmt = $pdo->prepare("INSERT INTO orders (user_id, total, basket_json, payment_token) VALUES (?, ?, ?, ?)");
+  $stmt->execute([(int)$_SESSION["user_id"], (float)$total, $basketJson, $paymentToken]);
 
   $_SESSION["cart"] = [];
-  $msg = "Order placed (stub).";
+  $msg = "Order placed";
 }
 ?>
 
@@ -40,6 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   <?php if ($msg): ?>
     <p style="color:#0b6;"><strong><?php echo htmlspecialchars($msg, ENT_QUOTES, "UTF-8"); ?></strong></p>
+  <?php endif; ?>
+
+  <?php if ($paymentToken): ?>
+    <details style="margin-top:10px;">
+      <summary>Payment token (DES)</summary>
+      <pre><?php echo htmlspecialchars($paymentToken, ENT_QUOTES, "UTF-8"); ?></pre>
+    </details>
   <?php endif; ?>
 </div>
 

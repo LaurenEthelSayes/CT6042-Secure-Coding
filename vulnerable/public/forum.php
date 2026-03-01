@@ -6,7 +6,7 @@ require_once "../includes/db.php";
 
 $error = "";
 
-/* New post */
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["create_post"])) {
   $topic = trim($_POST["topic"] ?? "");
   $message = trim($_POST["message"] ?? "");
@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["create_post"])) {
   }
 }
 
-/* Reply to a post */
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["reply_post_id"])) {
   $postId = (int)($_POST["reply_post_id"] ?? 0);
   $replyMsg = trim($_POST["reply_message"] ?? "");
@@ -44,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["reply_post_id"])) {
   }
 }
 
-/* Fetch posts */
 $stmt = $pdo->query("
   SELECT p.id, p.topic, p.message, p.created_at, u.username
   FROM forum_posts p
@@ -53,7 +51,6 @@ $stmt = $pdo->query("
 ");
 $posts = $stmt->fetchAll();
 
-/* Fetch replies for all posts in one go */
 $repliesByPost = [];
 if (count($posts) > 0) {
   $ids = implode(",", array_map(fn($p) => (int)$p["id"], $posts));

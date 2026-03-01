@@ -11,7 +11,6 @@ if (!$user) {
   exit;
 }
 
-// Simple deterministic identities for the mock provider
 $profiles = [
   "molly" => ["username" => "molly", "email" => "molly@catbook.local"],
   "admin" => ["username" => "admin", "email" => "admin@catbook.local"],

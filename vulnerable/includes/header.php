@@ -14,7 +14,7 @@ $isLoggedIn = isset($_SESSION["user"]);
 <body>
 <header class="site-header">
   <div class="brand">
-    <div class="logo">??</div>
+    <div class="logo">=^..^=</div>
     <div>
       <div class="brand-name">Cats@Home</div>
       <div class="brand-tag">Find, adopt, shop and share. Soft paws only.</div>
@@ -23,7 +23,6 @@ $isLoggedIn = isset($_SESSION["user"]);
 
   <nav class="nav">
     <a href="home.php">Home</a>
-    <a href="native/demo.php">Native Demo</a>
     <a href="shop.php">Shop</a>
     <a href="cart.php">Basket</a>
     <a href="orders.php">Orders</a>

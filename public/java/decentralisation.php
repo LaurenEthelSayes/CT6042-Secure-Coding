@@ -1,11 +1,15 @@
 ﻿<?php
 require_once "../../includes/auth.php";
 require_login();
-require_once "../../includes/java_bridge.php";
 
 $out = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $out = java_decentralisation_run($_POST["payload"] ?? "");
+  $root = realpath(__DIR__ . "/../../");
+  $bin = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "bin";
+  $file = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "Cust.ser";
+
+  $cmd = "java -cp " . escapeshellarg($bin) . " CustomerAppServer " . escapeshellarg($file);
+  $out = (string)@shell_exec($cmd);
 }
 ?>
 <!doctype html>
@@ -19,12 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <main class="container">
     <div class="card">
       <h1>Java Decentralisation</h1>
-      <p>Dedicated lab area for the Java vulnerability component.</p>
 
       <form method="post">
-        <label>Payload</label><br>
-        <textarea name="payload" rows="6" style="width:100%;" required></textarea><br><br>
-        <button type="submit">Send to Java component</button>
+        <button type="submit">Deserialise Cust.ser</button>
       </form>
 
       <?php if ($out !== ""): ?>

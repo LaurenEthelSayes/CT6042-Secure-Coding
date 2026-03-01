@@ -41,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <button type="submit">Login</button>
   </form>
-
+<p style="margin-top:14px;"><strong>Or</strong></p>
+<p><a class="pill" href="oauth/login.php">Login with CatBook (Mock OAuth)</a></p>
   <p style="margin-top:14px;">No account? <a href="register.php">Register here</a>.</p>
 </div>
 

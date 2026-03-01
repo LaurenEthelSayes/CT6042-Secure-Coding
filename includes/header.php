@@ -25,6 +25,7 @@ $isLoggedIn = isset($_SESSION["user"]);
     <a href="home.php">Home</a>
     <a href="shop.php">Shop</a>
     <a href="cart.php">Basket</a>
+    <a href="orders.php">Orders</a>
     <a href="upcycled.php">Upcycled</a>
     <a href="forum.php">Forum</a>
     <a href="faq.php">FAQ</a>

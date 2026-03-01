@@ -4,9 +4,9 @@ require_login();
 require_once "../includes/header.php";
 require_once "../includes/db.php";
 
-if (!isset($_SESSION["cart"])) { $_SESSION["cart"] = []; } // [item_id => qty]
+if (!isset($_SESSION["cart"])) { $_SESSION["cart"] = []; } 
 
-// Update quantities / remove
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   foreach (($_POST["qty"] ?? []) as $id => $qty) {
     $id = (int)$id;
@@ -78,6 +78,7 @@ if (count($cart) > 0) {
 
     <hr>
     <p><strong>Total: £<?php echo number_format($total, 2); ?></strong></p>
+    <p><a class="pill" href="checkout.php">Go to checkout</a></p>
 
     <button type="submit">Update basket</button>
     <button type="button" disabled>Checkout (stub)</button>

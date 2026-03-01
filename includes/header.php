@@ -9,7 +9,7 @@ $isLoggedIn = isset($_SESSION["user"]);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cats@Home</title>
-  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="/CT6042-Secure-Coding/assets/styles.css">
 </head>
 <body>
 <header class="site-header">
@@ -23,6 +23,7 @@ $isLoggedIn = isset($_SESSION["user"]);
 
   <nav class="nav">
     <a href="home.php">Home</a>
+    <a href="native/demo.php">Native Demo</a>
     <a href="shop.php">Shop</a>
     <a href="cart.php">Basket</a>
     <a href="orders.php">Orders</a>

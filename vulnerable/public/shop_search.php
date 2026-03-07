@@ -16,7 +16,7 @@ $items = $pdo->query($sql)->fetchAll();
     <input type="text" name="q" value="<?php echo htmlspecialchars($q, ENT_QUOTES, "UTF-8"); ?>" placeholder="Search shop items...">
     <button type="submit">Search</button>
   </form>
-  <p style="color:#6b6b6b; font-size:13px;">(Intentionally vulnerable search for CT6042 lab.)</p>
+  <p style="color:#6b6b6b; font-size:13px;"></p>
 </div>
 
 <br>

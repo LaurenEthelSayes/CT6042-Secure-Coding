@@ -4,10 +4,17 @@ require_login();
 require_once "../includes/header.php";
 require_once "../includes/db.php";
 
+$q = trim($_GET["q"] ?? "");
+$search = "%" . $q . "%";
 
-$q = $_GET["q"] ?? "";
-$sql = "SELECT id, name, description, price FROM shop_items WHERE name LIKE '%$q%' OR description LIKE '%$q%' ORDER BY id DESC";
-$items = $pdo->query($sql)->fetchAll();
+$stmt = $pdo->prepare("
+  SELECT id, name, description, price
+  FROM shop_items
+  WHERE name LIKE ? OR description LIKE ?
+  ORDER BY id DESC
+");
+$stmt->execute([$search, $search]);
+$items = $stmt->fetchAll();
 ?>
 
 <div class="card">
@@ -16,7 +23,7 @@ $items = $pdo->query($sql)->fetchAll();
     <input type="text" name="q" value="<?php echo htmlspecialchars($q, ENT_QUOTES, "UTF-8"); ?>" placeholder="Search shop items...">
     <button type="submit">Search</button>
   </form>
-  <p style="color:#6b6b6b; font-size:13px;">(Intentionally vulnerable search for CT6042 lab.)</p>
+  <p style="color:#6b6b6b; font-size:13px;"></p>
 </div>
 
 <br>

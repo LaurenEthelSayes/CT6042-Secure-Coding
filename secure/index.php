@@ -1,3 +1,3 @@
 <?php
-header("Location: /CT6042-Secure-Coding/public/");
+header("Location: public/");
 exit;

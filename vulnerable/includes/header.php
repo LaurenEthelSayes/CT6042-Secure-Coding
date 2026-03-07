@@ -9,7 +9,7 @@ $isLoggedIn = isset($_SESSION["user"]);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cats@Home</title>
-  <link rel="stylesheet" href="/CT6042-Secure-Coding/assets/styles.css">
+<link rel="stylesheet" href="<?php echo '/assets/styles.css'; ?>">
 </head>
 <body>
 <header class="site-header">

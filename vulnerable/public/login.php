@@ -43,18 +43,19 @@ $captcha = captcha_generate_question();
     <p style="color:#b00020;"><strong><?php echo htmlspecialchars($error, ENT_QUOTES, "UTF-8"); ?></strong></p>
   <?php endif; ?>
 
-  <form method="post" action="login.php">
-    <label>Username</label><br>
-    <input type="text" name="username" required><br><br>
+ <form method="post" action="login.php">
+  <label>Username</label><br>
+  <input type="text" name="username" required><br><br>
 
-    <label>Password</label><br>
-    <input type="password" name="password" required><br><br>
+  <label>Password</label><br>
+  <input type="password" name="password" required><br><br>
 
-    <label>CAPTCHA: <?php echo htmlspecialchars($captcha["question"], ENT_QUOTES, "UTF-8"); ?></label><br>
-    <input type="text" name="captcha" required><br><br>
+  <label>CAPTCHA: <?php echo htmlspecialchars($captcha["question"], ENT_QUOTES, "UTF-8"); ?></label><br>
+  <input type="text" name="captcha" required><br><br>
+  <input type="hidden" name="captcha_expected" value="<?php echo htmlspecialchars($captcha["answer"], ENT_QUOTES, "UTF-8"); ?>">
 
-    <button type="submit">Login</button>
-  </form>
+  <button type="submit">Login</button>
+</form>
 
   <p style="margin-top:14px;"><strong>Or</strong></p>
   <p><a class="pill" href="oauth/login.php">Login with CatBook (Mock OAuth)</a></p>

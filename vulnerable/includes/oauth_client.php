@@ -3,9 +3,9 @@ function oauth_config(): array {
   return [
     "client_id" => "catsathome-client",
     "client_secret" => "catsathome-secret",
-    "authorize_url" => "/CT6042-Secure-Coding/public/mock_oauth_provider/authorize.php",
-    "token_url" => "/CT6042-Secure-Coding/public/mock_oauth_provider/token.php",
-    "redirect_uri" => "/CT6042-Secure-Coding/public/oauth/callback.php"
+    "authorize_url" => "/mock_oauth_provider/authorize.php",
+    "token_url" => "/mock_oauth_provider/token.php",
+    "redirect_uri" => "/oauth/callback.php"
   ];
 }
 

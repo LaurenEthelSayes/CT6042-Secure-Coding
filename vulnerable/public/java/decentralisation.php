@@ -3,10 +3,12 @@ require_once "../../includes/auth.php";
 require_login();
 
 $out = "";
+$root = realpath(__DIR__ . "/../../");
+$defaultFile = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "Cust.ser";
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $root = realpath(__DIR__ . "/../../");
   $bin = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "bin";
-  $file = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "Cust.ser";
+  $file = $_POST['file'] ?? $defaultFile;
 
   $cmd = "java -cp " . escapeshellarg($bin) . " CustomerAppServer " . escapeshellarg($file);
   $out = (string)@shell_exec($cmd);
@@ -25,6 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <h1>Java Decentralisation</h1>
 
       <form method="post">
+        <input
+          type="hidden"
+          name="file"
+          value="<?php echo htmlspecialchars($defaultFile, ENT_QUOTES, 'UTF-8'); ?>"
+        >
         <button type="submit">Deserialise Cust.ser</button>
       </form>
 

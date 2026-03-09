@@ -7,9 +7,7 @@ $state = $_GET["state"] ?? "";
 <html>
 <head><meta charset="utf-8"><title>CatBook Consent</title></head>
 <body style="font-family:Arial; padding:30px;">
-  <h1>CatBook OAuth (Mock)</h1>
-  <p>This is a local mock provider for your CT6042 lab.</p>
-  <p>Click continue to send an auth code back to Cats@Home.</p>
+  <h1>CatBook OAuth</h1>
 
   <form method="post">
     <label>Mock user</label><br>

@@ -58,7 +58,7 @@ $captcha = captcha_generate_question();
   </form>
 
   <p style="margin-top:14px;"><strong>Or</strong></p>
-  <p><a class="pill" href="oauth/login.php">Login with CatBook/a></p>
+  <p><a class="pill" href="oauth/login.php">Login with CatBook</p>
 
   <p style="margin-top:14px;">No account? <a href="register.php">Register here</a>.</p>
 </div>

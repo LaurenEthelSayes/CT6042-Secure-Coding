@@ -3,12 +3,12 @@ require_once "../../includes/auth.php";
 require_login();
 
 $out = "";
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $root = realpath(__DIR__ . "/../../");
-  $bin = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "bin";
-  $file = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "Cust.ser";
+$root = realpath(__DIR__ . "/../../");
+$bin = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "bin";
+$trustedFile = $root . DIRECTORY_SEPARATOR . "java" . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "Cust.ser";
 
-  $cmd = "java -cp " . escapeshellarg($bin) . " CustomerAppServer " . escapeshellarg($file);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $cmd = "java -cp " . escapeshellarg($bin) . " CustomerAppServer " . escapeshellarg($trustedFile);
   $out = (string)@shell_exec($cmd);
 }
 ?>

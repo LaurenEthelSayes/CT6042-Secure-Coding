@@ -1,7 +1,10 @@
+++ To View screenshots, click RAW.
+
 ++ Screenshot Evidence
 All screenshot evidence for this project has been uploaded to the repository.
 Please download and review these screenshots alongside the report, as they demonstrate the vulnerable implementation, the remediation applied and the retesting carried out for each selected exploit.
 
 ++ Additional Note
+
 
 Although the assignment required submission of five exploits, Java deserialisation was also carried out, tested, and remediated as part of the wider secure coding exercise. It was not included as a full standalone exploit section of the report only because of the assignment submission limit, not because it was omitted from the practical work.

@@ -1,0 +1,24 @@
++++ CT6042 Secure Coding +++
+
+++ Project Overview ++
+
+This project presents a web application called Cats@Home, developed to demonstrate common web application security weaknesses and their corresponding remediation strategies within a secure coding context. The website was created in Two separate versions:
+
+- Vulnerable: designed to intentionally contain security flaws so that exploitation could be identified, demonstrated and analysed.
+- Secure: developed to remediate those weaknesses and support retesting to confirm that the original vulnerabilities had been successfully addressed.
+
+The purpose of structuring the project in this way was to clearly evidence the full secure coding process required by the assignment: exploitation, remediation and retesting.
+
+
++ Screenshot Evidence +
+
+Screenshot evidence has been included in this repository to support the practical work discussed in the report. These screenshots are intended to demonstrate:
+
+- the vulnerable behaviour
+- the remediation applied in the secure version
+- the retesting performed to verify security improvement.
+
+
+++++ Additional Note ++++
+
+Although the assignment formally limited the submission to five exploits, Java deserialisation was also carried out, tested, and remediated as part of the wider project. 
